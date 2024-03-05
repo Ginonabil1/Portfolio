@@ -1,25 +1,46 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react'
+import { BrowserRouter, Routes , Route } from 'react-router-dom'
+import { RiseLoader } from 'react-spinners'
+import Home from './Home'
+import Nav_bar from './Nav_bar'
+import Project from './Project'
 import './App.css';
 
-function App() {
+
+
+
+
+const App = () => {
+  const [Loading , setloading] = useState(false);
+
+  useEffect(() => {
+    setloading(true);
+    setTimeout(() => {
+      setloading(false)
+    },2000)
+  },[]);
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+            {/* Ternary operator if Loading using useeffect is true until 2s run the loading if false get the home */}
+      {Loading ?  
+      <div className='preload'>
+        <RiseLoader color="#f87765" cssOverride={{}} loading margin={2} size={20} speedMultiplier={1} />
+      </div> :
+      
+      <>
+      <Nav_bar />
+
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/Project' element={<Project />} />
+      </Routes>
+      </>
+      }
+
+  </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
