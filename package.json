@@ -25,6 +25,9 @@
     "swiper": "^11.0.6",
     "web-vitals": "^2.1.4"
   },
+  "devDependencies": {
+  "@babel/plugin-proposal-private-property-in-object": "^7.1.0"
+},
   "scripts": {
     "build": "react-scripts build --no-warnings",
     "start": "react-scripts start",
